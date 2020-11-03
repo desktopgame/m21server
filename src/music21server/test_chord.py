@@ -24,3 +24,17 @@ class MyTest(TestCase):
         e.debug = True
         for item in e.execute({'command': 'chord_names'}):
             print(item)
+
+    def test_chord_infos(self):
+        print('test_chord_infos.')
+        e: Engine = Engine()
+        e.debug = True
+        for item in e.execute({'command': 'chord_infos'}):
+            print(item)
+
+    def test_recipe_by_name(self):
+        print('test_recipe_by_name.')
+        e: Engine = Engine()
+        e.debug = True
+        for item in e.execute({'command': 'recipe_by_name', 'name': 'G#-chromatic tetramirror'}):
+            print(item)

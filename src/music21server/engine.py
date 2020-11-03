@@ -46,6 +46,10 @@ class Engine(object):
             return chord.Chord(value['notes']).pitchedCommonName
         elif command == 'chord_names':
             return map(lambda x: x['name'], self.chord_names())
+        elif command == 'chord_infos':
+            return map(lambda x: f'{x["recipe"]} => {x["name"]}', self.chord_names())
+        elif command == 'recipe_by_name':
+            return map(lambda x: x['recipe'], filter(lambda x: x['name'] == value['name'], self.chord_names()))
         elif command == 'exit':
             self.__is_active = False
         else:
