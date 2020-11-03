@@ -35,6 +35,8 @@ def callback(value):
         vartable[value['to']] = expr
         print(f'>> {expr}')
         ret = expr
+    elif command == 'chord_name':
+        ret = chord.Chord(value['notes']).pitchedCommonName
     elif command == 'exit':
         do_exit = True
     else:
