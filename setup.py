@@ -13,12 +13,12 @@ def _requires_from_file(filename):
 
 
 setup(
-    name="m21server",
+    name="music21server",
     version="0.1.0",
     license="MIT",
     description="",
     author="desktopgame",
-    url="https://github.com/desktopgame/m21server",
+    url="https://github.com/desktopgame/music21server",
     packages=find_packages("src"),
     package_dir={"": "src"},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
@@ -29,7 +29,7 @@ setup(
     tests_require=["pytest", "pytest-cov"],
     entry_points={
         'console_scripts': [
-            'm21server = m21server.main:main',
+            'music21server = music21server.main:main',
         ],
     },
 )
