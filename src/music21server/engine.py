@@ -1,6 +1,7 @@
 from music21 import chord
 from music21.chord import tables as chordTables
 import itertools
+import typing
 
 
 class Engine(object):
@@ -21,6 +22,19 @@ class Engine(object):
     def debug(self, is_debbug: bool):
         self.__debug = is_debbug
 
+    def chord_names(self) -> list:
+        if self.__chord_names is not None:
+            return self.__chord_names
+        notes = ['C', 'C#', 'D', 'D#', 'E', 'F',
+                 'F#', 'G', 'G#', 'A', 'A#', 'B']
+        self.__chord_names = []
+        for item in list(itertools.permutations(notes, 4)):
+            self.__chord_names.append({
+                'recipe': item,
+                'name': chord.Chord(item).pitchedCommonName
+            })
+        return self.__chord_names
+
     def execute(self, value):
         if 'command' not in value:
             raise 'command is not specified'
@@ -31,13 +45,7 @@ class Engine(object):
         if command == 'chord_name':
             return chord.Chord(value['notes']).pitchedCommonName
         elif command == 'chord_names':
-            if self.__chord_names is not None:
-                return self.__chord_names
-            notes = ['C', 'C#', 'D', 'D#', 'E', 'F',
-                     'F#', 'G', 'G#', 'A', 'A#', 'B']
-            self.__chord_names = map(lambda x: chord.Chord(x).pitchedCommonName,
-                                     list(itertools.permutations(notes, 3)))
-            return self.__chord_names
+            return map(lambda x: x['name'], self.chord_names())
         elif command == 'exit':
             self.__is_active = False
         else:
