@@ -17,3 +17,10 @@ class MyTest(TestCase):
         e: Engine = Engine()
         e.debug = True
         print(e.execute({'command': 'chord_name', 'notes': ['A', 'B', 'E']}))
+
+    def test_chord_names(self):
+        print('test_chord_name.')
+        e: Engine = Engine()
+        e.debug = True
+        for item in e.execute({'command': 'chord_names'}):
+            print(item)
