@@ -19,7 +19,7 @@ do_exit = False
 _server = None
 
 
-def callback(value) -> dict:
+def callback(value):
     """
     引数のオブジェクトからmusic21を実行して結果を辞書で返します
     """
